@@ -1,0 +1,5 @@
+#!/usr/bin/env escript
+
+main(_) ->
+        Grid = grid:build(10,10, [{1,1}, {2,2}, {2,1}, {1,2}]),
+        grid:draw(Grid).

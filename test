@@ -1,5 +1,0 @@
-#!/usr/bin/env escript
-
-main(_) ->
-        Grid = grid:build(10,10),
-        grid:draw(Grid).

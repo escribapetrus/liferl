@@ -1,0 +1,11 @@
+#!/usr/bin/env escript
+
+main(_) ->
+        caches:create(),
+        ets:insert(living_pieces, {{4,5}, identifier45}),
+        ets:insert(living_pieces, {{6,7}, identifier67}),
+        ets:insert(living_pieces, {{1,3}, identifier13}),
+        Id = ets:lookup(living_pieces, {6,7}),
+        All = ets:tab2list(living_pieces),
+        erlang:display(Id),
+        erlang:display(All).

@@ -1,0 +1,29 @@
+#!/usr/bin/env escript
+
+main(_) ->
+  test_mark_to_die(),
+  test_mark_to_spawn().
+
+test_mark_to_die() ->
+  LivingCells = [{1,1},{2,1}, {3,1}],
+  Result = liferl:mark_to_die(LivingCells),
+  Expected = [{1,1}, {3,1}],
+  assert("mark to die", Expected == Result).
+
+test_mark_to_spawn() ->
+  DeadCells = [
+               {1,0}, {2,0}, {3,0},
+               {1,2}, {2,2}, {3,2}
+              ],
+  LivingCells = [{1,1},{2,1}, {3,1}],
+  Result = liferl:mark_to_spawn(DeadCells, LivingCells),
+  Expected = [{2,0}, {2,2}],
+  assert("mark to spawn", Expected == Result).
+
+assert(TestDescription, Result) ->
+  case Result of
+    true ->
+      io:format("Test '~s' passes.~n", [TestDescription]);
+    false ->
+      io:format("Test '~s' FAILS.~n", [TestDescription])
+  end.
